@@ -1104,23 +1104,6 @@ function doForm(e){
     btn.textContent='Erreur — réessayez'; btn.disabled=false;
   });
 }
-/* —— FAQ —— */
-function doFaq(btn) {
-  const item = btn.parentElement;
-  const answer = item.querySelector('.faq-a');
-  const icon = btn.querySelector('.faq-icon');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(el => {
-    el.classList.remove('open');
-    el.querySelector('.faq-a').style.maxHeight = null;
-    el.querySelector('.faq-icon').textContent = '+';
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-    icon.textContent = '×';
-  }
-}
 /* ── INFOLETTRE ── */
 function doNL(e){
   e.preventDefault();
