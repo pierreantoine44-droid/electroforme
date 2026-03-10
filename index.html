@@ -1056,7 +1056,7 @@ secs.forEach(s=>new IntersectionObserver(entries=>{
 })();
 
 /* ── FAQ ── */
-function doFaq(btn){
+window.doFaq = function(btn){
   const item=btn.closest('.faq-item');
   const was=item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
