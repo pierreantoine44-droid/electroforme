@@ -1195,9 +1195,27 @@ function doGoogleTranslate(lang, btn) {
     }
   }, 200);
 }
+
+/* ── BOUTON FLOTTANT ── */
+const floatCta = document.getElementById('floatCta');
+window.addEventListener('scroll', () => {
+  floatCta.classList.toggle('visible', window.scrollY > 400);
+}, {passive:true});
+
+/* ── COOKIE BANNER ── */
+function acceptCookies() {
+  localStorage.setItem('cookies', 'accepted');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function declineCookies() {
+  localStorage.setItem('cookies', 'declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+if(!localStorage.getItem('cookies')) {
+  setTimeout(()=>{ document.getElementById('cookie-banner').style.display='flex'; }, 1500);
+}
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
 /* ── NAV ── */
 const nav = document.getElementById('nav');
 const burger = document.getElementById('burger');
