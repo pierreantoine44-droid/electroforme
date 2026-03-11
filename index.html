@@ -91,9 +91,7 @@ body { background:var(--white); color:var(--text); font-family:'Barlow',sans-ser
 .hero { position:relative; height:100vh; min-height:700px; display:flex; align-items:center; overflow:hidden; }
 
 /* Photo séparée du zoom — clé pour que l'animation fonctionne */
-.hero-slideshow { position:absolute; inset:0; z-index:0; }
-.hero-slide { position:absolute; inset:-8%; background-size:cover; background-position:center; opacity:0; transition:opacity 1.5s ease; animation:heroZoom 18s ease-in-out infinite alternate; will-change:transform; }
-.hero-slide.active { opacity:1; }
+.hero-img-layer { position:absolute; inset:-8%; object-fit:cover; width:116%; height:116%; animation:heroZoom 18s ease-in-out infinite alternate; will-change:transform; }
 @keyframes heroZoom {
   0%   { transform:scale(1.12) translate( 0px,   0px); }
   33%  { transform:scale(1.07) translate(-15px, -8px); }
@@ -568,12 +566,7 @@ footer { background:var(--white); border-top:1px solid var(--border); }
 <!-- ══ HERO ══ -->
 <section class="hero" id="accueil">
   <!-- Photo sur couche séparée = l'animation zoom fonctionne indépendamment du filter/overlay -->
-<div class="hero-slideshow">
-  <div class="hero-slide active" style="background-image:url('https://raw.githubusercontent.com/pierreantoine44-droid/electroforme/main/csm_medizinische-ems-evidenzbasiert-und-erforscht_6472b2aa57.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/pierreantoine44-droid/electroforme/main/csm_medizinische-elektromyostimulation-arbeitet-mit-strom-ueber-elektroden_1_ea25f383a4.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/pierreantoine44-droid/electroforme/main/F5D65087-B33B-4023-929F-1C5DA7382EB3-9ee5d2d1.JPG')"></div>
-  <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/pierreantoine44-droid/electroforme/main/csm_01_header_0044_249ad34b5f.jpg')"></div>
-</div>
+<video class="hero-img-layer" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/pierreantoine44-droid/electroforme/main/YTDown.com_YouTube_MIHA-BODYTEC-TOUGHEST-20-MINUTES-WORKOUT_Media_ZwB5ZlIXpSU_001_1080p.mp4" type="video/mp4"></video>
 <div class="hero-deco-line"></div>
 
   <div class="hero-content">
@@ -607,17 +600,7 @@ footer { background:var(--white); border-top:1px solid var(--border); }
   <div class="hero-scroll">
     <div class="scroll-bar"></div>Défiler
   </div>
-</section><script>
-(function(){
-  var slides=document.querySelectorAll('.hero-slide');
-  var i=0;
-  setInterval(function(){
-    slides[i].classList.remove('active');
-    i=(i+1)%slides.length;
-    slides[i].classList.add('active');
-  },5000);
-})();
-</script>
+</section>
 
 <!-- ══ TICKER ══ -->
 <div class="ticker" aria-hidden="true">
