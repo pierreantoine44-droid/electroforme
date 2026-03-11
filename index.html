@@ -948,6 +948,38 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
 </section>
 
 <!-- ══ FOOTER ══ -->
+  <div id="modal-privacy" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,14,69,.92);overflow-y:auto;padding:2rem;align-items:flex-start;justify-content:center;">
+<div style="max-width:800px;margin:2rem auto;background:#fff;border-radius:8px;padding:3rem;position:relative;">
+<button onclick="document.getElementById('modal-privacy').style.display='none'" style="position:absolute;top:1rem;right:1.5rem;font-size:1.5rem;background:none;border:none;cursor:pointer;">✕</button>
+<h2 style="color:#07163a;margin-bottom:.5rem;">Politique de confidentialité</h2>
+<p style="font-size:.85rem;color:#999;margin-bottom:2rem;">Dernière mise à jour : 11 mars 2026</p>
+<p>Chez Électroforme, nous accordons une grande importance à la protection de vos renseignements personnels et au respect de votre vie privée. La présente politique explique, en termes simples et clairs, comment nous recueillons, utilisons, communiquons, conservons et protégeons vos renseignements personnels lorsque vous interagissez avec nous, notamment par notre site Web, nos formulaires, nos réseaux sociaux, par téléphone, par courriel ou en personne.</p>
+<p>Cette politique s'applique conformément aux lois applicables au Québec, notamment à la Loi sur la protection des renseignements personnels dans le secteur privé.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">1. Les renseignements personnels que nous recueillons</h3>
+<p>Nous recueillons uniquement les renseignements personnels qui sont nécessaires aux fins déterminées dans la présente politique, notamment pour vous offrir nos services, assurer la gestion de votre dossier, répondre à vos demandes et respecter nos obligations légales.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">2. Comment nous utilisons vos renseignements personnels</h3>
+<p>Nous utilisons vos renseignements personnels uniquement pour les fins pour lesquelles ils ont été recueillis ou pour toute autre fin permise ou requise par la loi.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">3. Consentement</h3>
+<p>Lorsque requis, nous demandons votre consentement à la collecte, à l'utilisation ou à la communication de vos renseignements personnels.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">4. Communication de vos renseignements personnels</h3>
+<p>Électroforme ne vend pas vos renseignements personnels. Nous pouvons toutefois communiquer certains renseignements à des fournisseurs qui agissent pour notre compte.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">5. Témoins de connexion</h3>
+<p>Notre site Web peut utiliser des témoins de connexion afin d'assurer le bon fonctionnement du site, mémoriser certaines préférences et mesurer l'achalandage.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">6. Conservation et destruction</h3>
+<p>Nous conservons vos renseignements personnels seulement pour la durée nécessaire aux fins pour lesquelles ils ont été recueillis.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">7. Mesures de sécurité</h3>
+<p>Nous mettons en place des mesures de sécurité administratives, techniques et physiques raisonnables afin de réduire les risques d'accès non autorisé.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">8. Vos droits</h3>
+<p>Vous pouvez demander l'accès, la rectification ou le retrait de vos renseignements personnels en nous contactant.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">9. Incident de confidentialité</h3>
+<p>En cas d'incident, Électroforme prendra les mesures requises et avisera les personnes concernées conformément à la loi.</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">10. Responsable de la protection des renseignements personnels</h3>
+<p>Courriel : longueuil@electroforme.ca<br>Téléphone : 514-702-0110<br>Adresse : 70, rue de la Barre, local 116, Longueuil (Québec) J4K 5J3</p>
+<h3 style="color:#07163a;margin-top:1.5rem;">11. Modification de la présente politique</h3>
+<p>Nous pouvons modifier la présente politique de temps à autre. La version la plus récente est toujours celle publiée sur notre site Web.</p>
+<button onclick="document.getElementById('modal-privacy').style.display='none'" style="margin-top:2rem;padding:.75rem 2rem;background:#07163a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:1rem;">Fermer</button>
+</div>
+</div>
 <footer>
   <div class="footer-main">
     <div>
@@ -971,7 +1003,7 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     <div>
       <div class="fc-title">Légal</div>
       <div class="fl">
-        <a href="#">Politique de confidentialité</a>
+        <a href="#" onclick="document.getElementById('modal-privacy').style.display='flex';return false;">Politique de confidentialité</a>
         <a href="#">Conditions d'utilisation</a>
       </div>
     </div>
@@ -979,7 +1011,7 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
       <div class="fc-title">Contact</div>
       <div class="fl">
         <a href="tel:+15147020110">📞 514&nbsp;702‑0110</a>
-        <a href="/cdn-cgi/l/email-protection#096566676e7c6c7c6065496c656c6a7d7b666f667b646c6a6867686d68276a6664">✉️ <span class="__cf_email__" data-cfemail="afc3c0c1c8dacadac6c3efcac3caccdbddc0c9c0ddc2cacccec1cecbce81ccc0c2">[email&#160;protected]</span></a>
+<a href="mailto:longueuil@electroformecanada.com">✉️ longueuil@electroformecanada.com</a>        
         <a href="#location">📍 70 rue de La Barre #116<br/>Longueuil QC&nbsp; J4K 5J3</a>
       </div>
     </div>
