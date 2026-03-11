@@ -91,12 +91,9 @@ body { background:var(--white); color:var(--text); font-family:'Barlow',sans-ser
 .hero { position:relative; height:100vh; min-height:700px; display:flex; align-items:center; overflow:hidden; }
 
 /* Photo séparée du zoom — clé pour que l'animation fonctionne */
-.hero-img-layer {
-  position:absolute; inset:-8%;
-object-fit:cover; width:116%; height:116%; left:-8%; top:-8%;
-  animation:heroZoom 18s ease-in-out infinite alternate;
-  will-change:transform;
-}
+.hero-slideshow { position:absolute; inset:0; z-index:0; }
+.hero-slide { position:absolute; inset:-8%; background-size:cover; background-position:center; opacity:0; transition:opacity 1.5s ease; animation:heroZoom 18s ease-in-out infinite alternate; will-change:transform; }
+.hero-slide.active { opacity:1; }
 @keyframes heroZoom {
   0%   { transform:scale(1.12) translate( 0px,   0px); }
   33%  { transform:scale(1.07) translate(-15px, -8px); }
