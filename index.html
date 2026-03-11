@@ -1220,6 +1220,11 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   burger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});
 }));
 
+/* ── BOUTON FLOTTANT ── */
+const floatCta = document.getElementById('floatCta');
+window.addEventListener('scroll', () => {
+  floatCta.classList.toggle('visible', window.scrollY > 400);
+}, {passive:true});
 /* ── ACTIVE NAV ── */
 const secs=document.querySelectorAll('section[id]');
 const nls=document.querySelectorAll('.nav-links a');
