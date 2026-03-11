@@ -93,8 +93,7 @@ body { background:var(--white); color:var(--text); font-family:'Barlow',sans-ser
 /* Photo séparée du zoom — clé pour que l'animation fonctionne */
 .hero-img-layer {
   position:absolute; inset:-8%;
-  background-image:url('https://lirp.cdn-website.com/dc400196/dms3rep/multi/opt/i7DZX8WTCilEElnVTGBR_MIHA+BODYTEC+_+SIMON_HIFIVE_+2020_03_04+FINAL_INSTA+-+%284x5%29.v2.0000000-1920w.jpg');
-  background-size:cover; background-position:center 20%;
+object-fit:cover; width:116%; height:116%; left:-8%; top:-8%;
   animation:heroZoom 18s ease-in-out infinite alternate;
   will-change:transform;
 }
@@ -572,8 +571,7 @@ footer { background:var(--white); border-top:1px solid var(--border); }
 <!-- ══ HERO ══ -->
 <section class="hero" id="accueil">
   <!-- Photo sur couche séparée = l'animation zoom fonctionne indépendamment du filter/overlay -->
-  <div class="hero-img-layer"></div>
-  <div class="hero-overlay"></div>
+<video class="hero-img-layer" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/pierreantoine44-droid/electroforme/main/YTDown.com_YouTube_MIHA-BODYTEC-TOUGHEST-20-MINUTES-WORKOUT_Media_ZwB5ZlIXpSU_001_1080p.mp4" type="video/mp4"></video>  <div class="hero-overlay"></div>
   <div class="hero-deco-line"></div>
 
   <div class="hero-content">
