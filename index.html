@@ -614,8 +614,12 @@ footer { background:var(--white); border-top:1px solid var(--border); }
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#" class="lang"><img src="https://dd-cdn.multiscreensite.com/flags/flags_iso/32/fr.png" alt=""/> FR</a>
-    <a href="#" class="lang"><img src="https://dd-cdn.multiscreensite.com/flags/flags_iso/32/us.png" alt=""/> EN</a>
+    <div class="lang-switcher">
+  <button class="lang-btn active" onclick="doGoogleTranslate('fr')">🇨🇦 FR</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="doGoogleTranslate('en')">🇺🇸 EN</button>
+</div>
+<div id="google_translate_element" style="display:none"></div>
     <a href="#contact" class="nav-cta">Essai gratuit</a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
