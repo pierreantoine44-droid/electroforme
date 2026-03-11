@@ -1215,7 +1215,8 @@ if(!localStorage.getItem('cookies')) {
 }
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  /* ── NAV ── */
+<script>
+/* ── NAV ── */
 const nav = document.getElementById('nav');
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
@@ -1238,26 +1239,21 @@ const floatCta = document.getElementById('floatCta');
 window.addEventListener('scroll', () => {
   floatCta.classList.toggle('visible', window.scrollY > 400);
 }, {passive:true});
+
 /* ── ACTIVE NAV ── */
 const secs=document.querySelectorAll('section[id]');
 const nls=document.querySelectorAll('.nav-links a');
-new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting) nls.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));});
-},{threshold:.35}).observe;
 secs.forEach(s=>new IntersectionObserver(entries=>{
   if(entries[0].isIntersecting) nls.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+s.id));
 },{threshold:.35}).observe(s));
 
-/* ── PARALLAXE HERO (JS pour robustesse cross-browser) ── */
+/* ── PARALLAXE HERO ── */
 (function(){
   const layer = document.querySelector('.hero-img-layer');
   if(!layer) return;
-  // L'animation CSS kenburns gère déjà le zoom — on ajoute un léger parallaxe au scroll
   window.addEventListener('scroll',()=>{
     const y = window.scrollY;
-    if(y < window.innerHeight){
-      layer.style.transform = `translateY(${y * 0.3}px)`;
-    }
+    if(y < window.innerHeight){ layer.style.transform = `translateY(${y * 0.3}px)`; }
   },{passive:true});
 })();
 
@@ -1303,38 +1299,68 @@ function doForm(e){
   fetch('https://formspree.io/f/xlgpjorl',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({
-      prenom: fn.value,
-      nom: ln.value,
-      email: em.value,
-      telephone: ph.value,
-      objectif: obj.value,
-      message: msg.value
-    })
+    body:JSON.stringify({ prenom: fn.value, nom: ln.value, email: em.value, telephone: ph.value, objectif: obj.value, message: msg.value })
   }).then(r=>{
     if(r.ok){
       ok.style.display='block';
       btn.textContent='✓ Message envoyé !'; btn.style.background='var(--navy)'; btn.disabled=false;
       e.target.querySelectorAll('.fi,.fse,.fta').forEach(f=>{f.value='';f.classList.remove('err');});
       ok.scrollIntoView({behavior:'smooth',block:'nearest'});
-    } else {
-      btn.textContent='Erreur — réessayez'; btn.disabled=false;
-    }
-  }).catch(()=>{
-    btn.textContent='Erreur — réessayez'; btn.disabled=false;
-  });
+    } else { btn.textContent='Erreur — réessayez'; btn.disabled=false; }
+  }).catch(()=>{ btn.textContent='Erreur — réessayez'; btn.disabled=false; });
 }
+
 /* ── INFOLETTRE ── */
 function doNL(e){
   e.preventDefault();
   const btn=document.getElementById('nlb');
   const inp=document.getElementById('nli');
   btn.textContent='⏳';
-  setTimeout(()=>{
-    inp.value='';
-    btn.textContent='✓ Inscrit !';
-    btn.style.background='var(--navy)';
-  },1000);
+  setTimeout(()=>{ inp.value=''; btn.textContent='✓ Inscrit !'; btn.style.background='var(--navy)'; },1000);
+}
+
+/* ── COMPTEUR ANIMÉ ── */
+(function(){
+  var counters = document.querySelectorAll('.stat-num');
+  var started = false;
+  function animateCounter(el) {
+    var text = el.innerText.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g,''));
+    var prefix = text.match(/^[^0-9]*/)[0];
+    var suffix = text.match(/[^0-9.]*$/)[0];
+    if(isNaN(num)) return;
+    var duration = 1800; var start = null;
+    function step(ts) {
+      if(!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(ease * num);
+      el.innerText = prefix + current + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+      else el.innerText = prefix + num + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !started){ started = true; counters.forEach(function(c){ animateCounter(c); }); }
+    });
+  }, { threshold: 0.3 });
+  var bar = document.querySelector('.stats-bar');
+  if(bar) observer.observe(bar);
+})();
+
+/* ── GOOGLE TRANSLATE ── */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'fr', includedLanguages: 'en,fr', autoDisplay: false }, 'google_translate_element');
+}
+function doGoogleTranslate(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  var tryTranslate = setInterval(function() {
+    var select = document.querySelector('.goog-te-combo');
+    if (select) { clearInterval(tryTranslate); select.value = lang; select.dispatchEvent(new Event('change')); }
+  }, 200);
 }
 
 /* ── COOKIE BANNER ── */
