@@ -1313,4 +1313,8 @@ function doNL(e){
   const inp=document.getElementById('nli');
   btn.textContent='⏳';
   setTimeout(()=>{
-    inp.value=''; btn.textContent='✓ Inscrit !'; b
+    inp.value='';
+    btn.textContent='✓ Inscrit !';
+    btn.style.background='var(--navy)';
+  },1000);
+}
