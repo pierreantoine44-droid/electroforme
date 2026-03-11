@@ -1054,7 +1054,9 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
 <p>70, rue de la Barre, local 116, Longueuil (Québec) J4K 5J3<br>Téléphone : 514-702-0110<br>Courriel : longueuil@electroformecanada.com</p>
 <button onclick="document.getElementById('modal-terms').style.display='none'" style="margin-top:2rem;padding:.75rem 2rem;background:#07163a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:1rem;">Fermer</button>
 </div>
-</div>  <div id="modal-privacy" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,14,69,.92);overflow-y:auto;padding:2rem;align-items:flex-start;justify-content:center;">
+</div>
+
+<div id="modal-privacy" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,14,69,.92);overflow-y:auto;padding:2rem;align-items:flex-start;justify-content:center;">
 <div style="max-width:800px;margin:2rem auto;background:#fff;border-radius:8px;padding:3rem;position:relative;">
 <button onclick="document.getElementById('modal-privacy').style.display='none'" style="position:absolute;top:1rem;right:1.5rem;font-size:1.5rem;background:none;border:none;cursor:pointer;">✕</button>
 <h2 style="color:#07163a;margin-bottom:.5rem;">Politique de confidentialité</h2>
@@ -1086,6 +1088,7 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
 <button onclick="document.getElementById('modal-privacy').style.display='none'" style="margin-top:2rem;padding:.75rem 2rem;background:#07163a;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:1rem;">Fermer</button>
 </div>
 </div>
+
 <footer>
   <div class="footer-main">
     <div>
@@ -1117,7 +1120,7 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
       <div class="fc-title">Contact</div>
       <div class="fl">
         <a href="tel:+15147020110">📞 514&nbsp;702‑0110</a>
-<a href="mailto:longueuil@electroformecanada.com">✉️ longueuil@electroformecanada.com</a>        
+        <a href="mailto:longueuil@electroformecanada.com">✉️ longueuil@electroformecanada.com</a>
         <a href="#location">📍 70 rue de La Barre #116<br/>Longueuil QC&nbsp; J4K 5J3</a>
       </div>
     </div>
@@ -1135,7 +1138,65 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+/* ── COMPTEUR ANIMÉ ── */
+(function(){
+  var counters = document.querySelectorAll('.stat-num');
+  var started = false;
+  function animateCounter(el) {
+    var text = el.innerText.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g,''));
+    var prefix = text.match(/^[^0-9]*/)[0];
+    var suffix = text.match(/[^0-9.]*$/)[0];
+    if(isNaN(num)) return;
+    var duration = 1800;
+    var start = null;
+    function step(ts) {
+      if(!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(ease * num);
+      el.innerText = prefix + current + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+      else el.innerText = prefix + num + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !started){
+        started = true;
+        counters.forEach(function(c){ animateCounter(c); });
+      }
+    });
+  }, { threshold: 0.3 });
+  var bar = document.querySelector('.stats-bar');
+  if(bar) observer.observe(bar);
+})();
+
+/* ── GOOGLE TRANSLATE ── */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'fr',
+    includedLanguages: 'en,fr',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+function doGoogleTranslate(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  var tryTranslate = setInterval(function() {
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+      clearInterval(tryTranslate);
+      select.value = lang;
+      select.dispatchEvent(new Event('change'));
+    }
+  }, 200);
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 /* ── NAV ── */
 const nav = document.getElementById('nav');
 const burger = document.getElementById('burger');
