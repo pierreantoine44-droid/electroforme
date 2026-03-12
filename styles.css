@@ -29,7 +29,7 @@
   --space-section-y: 7rem;
 }
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; overflow-x:clip; }
 body { background:var(--white); color:var(--text); font-family:'Barlow',sans-serif; font-weight:300; overflow-x:hidden; -webkit-font-smoothing:antialiased; font-size:0.9375rem; }
 
 /* ─── UTILITAIRES ─── */
@@ -521,16 +521,26 @@ footer { background:var(--white); border-top:1px solid var(--border); }
   :root { --space-page-x: 1.5rem; --space-section-y: 5rem; }
   .ticker { display:none; }
   #nav{padding:0 1.4rem;}
+  .nav-cta{display:none;}
   .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:1rem 1.5rem;box-shadow:var(--sh-md);gap:0;}
   .nav-links.open{display:flex;}
   .nav-links li a{display:block;padding:.8rem 0;border-bottom:1px solid var(--border);}
   .burger{display:flex;}
   .hero-content{padding:0 1.5rem 3.5rem 2rem;}
+  .hero h1{font-size:clamp(2.6rem,12vw,4.5rem);}
+  .hero-sub{max-width:100%;}
+  .hero-metrics{display:flex;flex-wrap:wrap;max-width:100%;}
+  .hm{flex:1 1 45%;min-width:0;padding:.8rem 1rem;}
+  .hm-eq{display:none;}
   .hero-scroll{display:none;}
   .photobanner-1,.photobanner-2{grid-template-columns:1fr;}
   .pb-img,.pb2-img{height:320px;}
   .pb-content,.pb2-content{padding:3rem 2rem;}
   .techno-hero{padding:5rem 1.5rem; background-attachment:scroll;}
+  .ratio-display{width:100%;max-width:100%;gap:.8rem;padding:1rem;flex-wrap:wrap;}
+  .ratio-num.big,.ratio-num.sml{font-size:clamp(2.2rem,14vw,3.2rem);}
+  .ratio-mid{font-size:1.2rem;}
+  .ratio-lbl{flex:1 1 100%;}
   .parallax-div .par-bg{background-attachment:scroll;}
   .testi-grid{grid-template-columns:1fr;}
   .partner-grid{grid-template-columns:1fr;}
@@ -656,6 +666,7 @@ footer { background:var(--white); border-top:1px solid var(--border); }
 }
 
 @media(max-width:768px){
+  html, body { max-width: 100%; overflow-x: clip; }
   body { font-size: 1rem; }
   .cookie-banner { left: .7rem; right: .7rem; bottom: .7rem; }
 }
